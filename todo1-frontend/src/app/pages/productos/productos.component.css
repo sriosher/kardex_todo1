@@ -1,0 +1,30 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    padding: 20px;
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 600px;
+    min-width: 100%;
+  }
+  
+  .mat-column-id {
+    flex: 0 0 100px;
+  }
+
+  .mat-column-img{
+    flex: 0 0 100px;
+  }

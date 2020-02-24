@@ -1,0 +1,10 @@
+.example-card {
+    max-width: 250px;
+    width: 250px;
+    height: 420px;
+ }
+
+
+  mat-grid-tile {
+    background: #f8f8f8;
+  }

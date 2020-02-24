@@ -1,0 +1,60 @@
+<div>
+    <mat-form-field>
+        <input matInput placeholder="Nombres" [(ngModel)]="producto.nombre">
+    </mat-form-field><br>
+    <mat-form-field>
+        <input matInput placeholder="Precio" [(ngModel)]="producto.precio">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Stock" [(ngModel)]="producto.stock">
+    </mat-form-field><br>
+    
+    
+
+    <mat-form-field>
+        <mat-select placeholder="Categoria" [(value)]="categoriaSeleccionada.idCategoria">
+            <mat-option *ngFor="let e of categorias" [value]="e.idCategoria">
+                {{ e.nombre }} 
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+        <input matInput [(ngModel)]="producto.img" [hidden]="true">
+    {{producto.img}}
+   <!-- 
+    <img mat-card-image [src]="especialidad.img" alt="" width="50%" height="50%"
+        *ngIf="especialidad.img != null && especialidad.idEspecialidad != null">
+    <mat-divider></mat-divider>
+-->
+<mat-divider></mat-divider>
+
+        <mat-divider></mat-divider>
+    <button *ngIf="producto.idProducto != null" mat-button color="primary" onclick="document.getElementById('flArchivo').click()">Seleccionar
+        Imagen</button>
+
+    <input *ngIf="producto.idProducto != null" id="flArchivo" type="file" style="display: none" (change)="seleccionarArchivo($event)">
+    {{nombreArchivo}}
+    
+    <button *ngIf="producto.idProducto != null" mat-button color="primary" (click)="subirArchivo()" [disabled]="!archivosSeleccionados">Subir
+        archivo</button>
+        
+
+    <section class="example-section" *ngIf="producto?.img">
+      <mat-progress-bar
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+          
+      </mat-progress-bar>{{progreso}}%
+        </section>
+        
+        <img  mat-card-image src="http://localhost:8080/productos/upload/img/{{producto.img}}" alt="" width="30%" height="30%"
+        *ngIf="producto?.img">
+        <br>
+        <mat-divider></mat-divider>
+</div>
+<button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>

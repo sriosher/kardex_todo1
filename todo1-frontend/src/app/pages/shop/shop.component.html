@@ -1,0 +1,68 @@
+<mat-toolbar style="padding-left: 2rem;">
+    <mat-icon style="cursor: pointer; color: #1192ee; padding-right: 10px;">video_library</mat-icon>Lista de Productos
+
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<div flexLayout="row" class="card-estilos" fxLayoutAlign="left left" fxLayout.xs="column" fxLayoutWrap
+    fxLayoutGap="0.5%">
+    <div fxFlex="70">
+        <mat-grid-list cols="3" rowHeight="1:1.5">
+            <mat-grid-tile *ngFor="let p of productos">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>{{p.nombre}}</mat-card-title>
+                        <mat-card-subtitle>{{p.categoria.nombre}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image src="http://localhost:8080/productos/upload/img/{{p.img}}"
+                        alt="Photo of a Shiba Inu" width="20%" height="50%">
+                    <mat-card-content>
+                        <p>
+                            <mat-card-subtitle>Stock:{{p.stock}}</mat-card-subtitle>
+                            <mat-card-title>$ {{p.precio}}</mat-card-title>
+                            The Shiba Inu is the smallest of ...
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" (click)="agregar(p)">Añadir al carrito</button>
+
+                    </mat-card-actions>
+                </mat-card>
+
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </div>
+    <div fxFlex="30">
+        <p>Carrito de Compras:</p>
+
+        <mat-expansion-panel *ngFor="let d of detalleVentaDTO; let i=index">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ i + 1 }} {{d.nombreProducto}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    Ver Detalle
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+          
+            
+
+            <mat-form-field>
+                <input matInput placeholder="Cantidad"  [(ngModel)]="d.cantidad">
+            </mat-form-field>
+            <br>
+            Precio Unitario: {{d.precio}} <br>
+            Subtotal {{d.subtotal}}
+            
+            <button mat-button color="accent" (click)="removerProducto(i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+
+            
+
+        </mat-expansion-panel>
+
+        <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()">Comprar</button>
+    </div>
+</div>
